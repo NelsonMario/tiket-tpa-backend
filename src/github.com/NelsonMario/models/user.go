@@ -14,11 +14,11 @@ type User struct {
 	FirstName      string     `gorm:"type:varchar(100);not null"`
 	LastName     string     `gorm:"type:varchar(100);not null"`
 	Email string `gorm:"type:varchar(100);not null"`
-	PhoneNumber  string     `gorm:"type:varchar(100);not null"`
 	Password  string     `gorm:"type:varchar(100);not null"`
-	CountryName string `gorm:"type:varchar(100);"`
+	PhoneNumber  string     `gorm:"type:varchar(100);not null"`
+	CityName string `gorm:"type:varchar(100);"`
 	Address string `gorm:"type:varchar(100);"`
-	postCode string `gorm:"type:varchar(100);"`
+	PostCode string `gorm:"type:varchar(100);"`
 }
 
 func init() {
@@ -69,8 +69,8 @@ func InsertUser(firstName string, lastName string, phoneNumber string, password 
 	}
 	defer db.Close()
 
-	User := &User{FirstName: firstName, LastName: lastName, PhoneNumber:phoneNumber, Password:password, Email:email}
-	db.Save(User)
+	user := &User{FirstName: firstName, LastName: lastName, PhoneNumber:phoneNumber, Password:password, Email:email}
+	db.Save(user)
 
-	return User, nil
+	return user, nil
 }

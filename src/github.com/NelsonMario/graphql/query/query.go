@@ -32,6 +32,12 @@ func GetRoot() *graphql.Object {
 				Resolve:     resolvers.GetAllSlider,
 				Description: "Get All Slider",
 			},
+
+			"users": {
+				Type:        graphql.NewList(types.GetUserType()),
+				Resolve:     resolvers.GetAllUser,
+				Description: "Get All Users",
+			},
 		},
 	})
 

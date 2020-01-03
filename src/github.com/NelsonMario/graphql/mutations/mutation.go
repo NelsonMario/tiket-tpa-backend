@@ -61,6 +61,28 @@ func GetRoot() *graphql.Object {
 				},
 				Resolve: resolvers.InsertSlider,
 			},
+
+			"insertUser": &graphql.Field{
+				Type: types.GetUserType(),
+				Args: graphql.FieldConfigArgument{
+					"firstName": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"lastName": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"phoneNumber": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"password": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"email": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.InsertUser,
+			},
 		},
 	})
 
