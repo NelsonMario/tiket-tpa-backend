@@ -46,8 +46,7 @@ func GetAllUser() ([]User, error) {
 	fmt.Println(Users)
 	return Users, err
 }
-
-func GetUser(id int) ([]User, error) {
+func GetUserById(id int) ([]User, error) {
 	db, err := connection.ConnectDatabase()
 
 	if err != nil {
@@ -58,6 +57,20 @@ func GetUser(id int) ([]User, error) {
 
 	var User []User
 	db.Where("id = ?", id).Find(&User)
+	return User, err
+}
+
+func GetUserByEmailOrPhone(input string) ([]User, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		panic("Failed to connect to database")
+	}
+
+	defer db.Close()
+
+	var User []User
+	db.Where("email = ?", input).Or("phone_number = ?", input).Find(&User)
 	return User, err
 }
 

@@ -33,6 +33,28 @@ func GetRoot() *graphql.Object {
 				Description: "Get All Slider",
 			},
 
+			"userById": {
+				Type: graphql.NewList(types.GetUserType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve:     resolvers.GetUserById,
+				Description: "Get Single Users by Id",
+			},
+
+			"userByEmailOrPhone": {
+				Type: graphql.NewList(types.GetUserType()),
+				Args: graphql.FieldConfigArgument{
+					"input": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve:     resolvers.GetUserByEmailOrPhone,
+				Description: "Get Single Users by Email or Phone",
+			},
+
 			"users": {
 				Type:        graphql.NewList(types.GetUserType()),
 				Resolve:     resolvers.GetAllUser,

@@ -27,7 +27,7 @@ func GetUserType() *graphql.Object {
 				"password": &graphql.Field{
 					Type: graphql.String,
 				},
-				"countryName": &graphql.Field{
+				"cityName": &graphql.Field{
 					Type: graphql.String,
 				},
 				"address": &graphql.Field{
