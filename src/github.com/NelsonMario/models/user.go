@@ -43,7 +43,7 @@ func GetAllUser() ([]User, error) {
 
 	var Users []User
 	db.Find(&Users)
-	fmt.Println(Users)
+	fmt.Println(Users)	
 	return Users, err
 }
 func GetUserById(id int) ([]User, error) {

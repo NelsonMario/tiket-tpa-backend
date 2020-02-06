@@ -83,6 +83,50 @@ func GetRoot() *graphql.Object {
 				},
 				Resolve: resolvers.InsertUser,
 			},
+
+			"insertAirline": &graphql.Field{
+				Type: types.GetAirlineType(),
+				Args: graphql.FieldConfigArgument{
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve:resolvers.InsertAirline,
+			},
+
+			"insertFlight": &graphql.Field{
+				Type: types.GetFlightType(),
+				Args: graphql.FieldConfigArgument{
+					"airlineRefer": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"fromRefer": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"toRefer": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"departure": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.DateTime),
+					},
+					"arrival": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.DateTime),
+					},
+					"duration": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"price": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"tax": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+					"serviceTax": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve:resolvers.InsertFlight,
+			},
 		},
 	})
 
