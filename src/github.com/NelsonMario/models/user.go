@@ -87,3 +87,18 @@ func InsertUser(firstName string, lastName string, phoneNumber string, password 
 
 	return user, nil
 }
+
+func UpdateUser(id int, firstName string, lastName string, phoneNumber string, email string, cityName string, address string, postcode string) (*User, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var user User
+	db.Model(&user).Where("id = ?", id).Updates(map[string]interface{}{"first_name": firstName, "last_name": lastName, "phone_number": phoneNumber, "email": email, "city_name": cityName, "address": address, "post_code": postcode})
+	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
+	db.Where("id = ?", id).Find(&user)
+	return &user, nil
+}

@@ -48,4 +48,44 @@ func GetAllFlightFacility() ([]FlightFacility, error){
 	return FlightFacility, err
 }
 
+func InsertFlightFacility(facilityRefer uint, flightFacilityRefer uint)(*FlightFacility, error){
+	db, err := connection.ConnectDatabase()
 
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	flightFacility := &FlightFacility{FacilityRefer: facilityRefer, FlightReferFacility:flightFacilityRefer}
+
+	db.Save(flightFacility)
+	return flightFacility, err
+}
+
+func UpdateFlightFacility(id int, facilityRefer uint, flightFacilityRefer uint) (*FlightFacility, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var flightFacility FlightFacility
+	db.Model(&flightFacility).Where("id = ?", id).Updates(map[string]interface{}{"facility_refer": facilityRefer, "flight_facility_refer": flightFacilityRefer})
+	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
+	db.Where("id = ?", id).Find(&flightFacility)
+	return &flightFacility, nil
+}
+
+func RemoveFlightFacility(id int) (*FlightFacility, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	flightFacility := FlightFacility{ID: id}
+	db.Where("id = ?", id).Find(&flightFacility)
+	return &flightFacility, db.Delete(flightFacility).Error
+}

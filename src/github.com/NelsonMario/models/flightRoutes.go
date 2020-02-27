@@ -47,3 +47,45 @@ func GetAllRoute() ([]FlightRoutes, error){
 	fmt.Println(FlightRoutes)
 	return FlightRoutes, err
 }
+
+func InsertFlightRoutes(airportRefer uint, flightReferRoutes uint)(*FlightRoutes, error){
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	FlightRoutes := &FlightRoutes{AirportRefer:airportRefer, FlightReferRoute:flightReferRoutes}
+
+	db.Save(FlightRoutes)
+	return FlightRoutes, err
+}
+
+func UpdateFlightRoutes(id int, airportRefer uint, flightReferRoutes uint) (*FlightRoutes, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var flightRoutes FlightRoutes
+	db.Model(&flightRoutes).Where("id = ?", id).Updates(map[string]interface{}{"airport_refer": airportRefer, "flight_refer_airport": flightReferRoutes})
+	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
+	db.Where("id = ?", id).Find(&flightRoutes)
+	return &flightRoutes, nil
+}
+
+func RemoveFlightRoutes(id int) (*FlightRoutes, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	flightRoutes := FlightRoutes{ID: id}
+	db.Where("id = ?", id).Find(&flightRoutes)
+	return &flightRoutes, db.Delete(flightRoutes).Error
+}

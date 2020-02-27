@@ -108,6 +108,41 @@ func GetRoot() *graphql.Object {
 				Resolve: resolvers.GetFlightByToAndFrom,
 			},
 
+			"flightBySchedule": {
+				Type:	graphql.NewList(types.GetFlightType()),
+				Args:	graphql.FieldConfigArgument{
+					"from": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"to": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"arrival": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"departure": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetFlightBySchedule,
+			},
+
+			"flightByOneSchedule": {
+				Type:	graphql.NewList(types.GetFlightType()),
+				Args:	graphql.FieldConfigArgument{
+					"from": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"to": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"date": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetFlightByOneSchedule,
+			},
+
 			"flightRoutes": {
 				Type:	graphql.NewList(types.GetFlightRoutesType()),
 				Resolve: resolvers.GetAllFlightRoutes,
@@ -121,6 +156,140 @@ func GetRoot() *graphql.Object {
 			"facilities": {
 				Type:	graphql.NewList(types.GetFacilityType()),
 				Resolve: resolvers.GetAllFacility,
+			},
+
+			"trains": {
+				Type: graphql.NewList(types.GetTrainType()),
+				Resolve: resolvers.GetAllTrain,
+			},
+
+			"stations": {
+				Type: graphql.NewList(types.GetStationType()),
+				Resolve: resolvers.GetAllStation,
+			},
+
+			"railroadRoutes": {
+				Type: graphql.NewList(types.GetRailroadRoutesType()),
+				Resolve: resolvers.GetAllRailroadRoutes,
+			},
+
+			"railroads": {
+				Type:	graphql.NewList(types.GetRailroadType()),
+				Resolve: resolvers.GetAllRailroad,
+			},
+
+			"railroadByFromAndTo": {
+				Type:	graphql.NewList(types.GetRailroadType()),
+				Args:	graphql.FieldConfigArgument{
+					"from": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"to": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetRailroadByToAndFrom,
+			},
+
+			"railroadsByOneSchedule": {
+				Type:	graphql.NewList(types.GetRailroadType()),
+				Args:	graphql.FieldConfigArgument{
+					"from": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"to": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"date": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetRailroadByOneSchedule,
+			},
+
+			"railroadsBySchedule": {
+				Type:	graphql.NewList(types.GetRailroadType()),
+				Args:	graphql.FieldConfigArgument{
+					"from": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"to": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"arrival": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"departure": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetRailroadBySchedule,
+			},
+
+			"distinctStation": {
+				Type:        graphql.NewList(types.GetStationType()),
+				Resolve:     resolvers.GetDistinctStation,
+				Description: "Get Distinct Airport",
+			},
+
+			"rooms": {
+				Type:        graphql.NewList(types.GetRoomType()),
+				Resolve:     resolvers.GetAllRoom,
+			},
+
+			"hotels": {
+				Type:        graphql.NewList(types.GetHotelType()),
+				Resolve:     resolvers.GetAllHotel,
+			},
+
+			"nearestHotels": {
+				Type:        graphql.NewList(types.GetHotelType()),
+				Args:	graphql.FieldConfigArgument{
+					"location": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve:     resolvers.GetNearestHotelByLocation,
+			},
+
+			"hotelByLocation": {
+				Type:        graphql.NewList(types.GetHotelType()),
+				Args:	graphql.FieldConfigArgument{
+					"location": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve:     resolvers.GetHotelByLocation,
+			},
+
+			"roomFacilities": {
+				Type:        graphql.NewList(types.GetRoomFacilityType()),
+				Resolve:     resolvers.GetAllRoomFacility,
+			},
+
+			"cars": {
+				Type:        graphql.NewList(types.GetCarType()),
+				Resolve:     resolvers.GetAllCar,
+			},
+
+			"vendors": {
+				Type:        graphql.NewList(types.GetVendorType()),
+				Resolve:     resolvers.GetAllVendor,
+			},
+
+			"carByLocation": {
+				Type:        graphql.NewList(types.GetCarType()),
+				Args:	graphql.FieldConfigArgument{
+					"location": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve:     resolvers.GetCarByLocation,
+			},
+
+			"location": {
+				Type:        graphql.NewList(types.GetLocationType()),
+				Resolve:     resolvers.GetAllLocation,
 			},
 		},
 	})

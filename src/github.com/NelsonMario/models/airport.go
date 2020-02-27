@@ -73,3 +73,46 @@ func InsertAirport(code string, name string, city string, cityCode string, provi
 
 	return airport, nil
 }
+
+func GetAirportById(id int)([]Airport, error){
+	db, err = connection.ConnectDatabase()
+
+	if(err != nil){
+		panic(err)
+	}
+
+	defer db.Close()
+
+	var Airport[] Airport
+
+	db.Where("id = ?", id).Find(&Airport)
+	return Airport, err
+}
+
+func UpdateAirport(id int, code string, name string, city string, cityCode string, province string, country string) (*Airport, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var airport Airport
+	db.Model(&airport).Where("id = ?", id).Updates(map[string]interface{}{"code": code, "name": name, "city": city, "city_code": cityCode, "province": province, "country": country})
+	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
+	db.Where("id = ?", id).Find(&airport)
+	return &airport, nil
+}
+
+func RemoveAirport(id int) (*Airport, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	airport := Airport{Id: id}
+	db.Where("id = ?", id).Find(&airport)
+	return &airport, db.Delete(airport).Error
+}

@@ -67,3 +67,31 @@ func InsertAirline(name string)(*Airline, error){
 	return airline, err
 }
 
+func UpdateAirline(id int, name string) (*Airline, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var airline Airline
+	db.Model(&airline).Where("id = ?", id).Updates(map[string]interface{}{"name": name})
+	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
+	db.Where("id = ?", id).Find(&airline)
+	return &airline, nil
+}
+
+func RemoveAirline(id int) (*Airline, error) {
+	db, err := connection.ConnectDatabase()
+
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	airline := Airline{ID: id}
+	db.Where("id = ?", id).Find(&airline)
+	return &airline, db.Delete(airline).Error
+}
+

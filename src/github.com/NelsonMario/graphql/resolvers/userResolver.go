@@ -37,3 +37,22 @@ func InsertUser(p graphql.ResolveParams) (i interface{}, e error) {
 	}
 	return user, nil
 }
+
+func UpdateUser(p graphql.ResolveParams) (i interface{}, e error) {
+	id := p.Args["id"].(int)
+	firstName := p.Args["first_name"].(string)
+	lastName := p.Args["last_name"].(string)
+	email := p.Args["email"].(string)
+	phoneNumber := p.Args["phone_number"].(string)
+	cityName := p.Args["city_name"].(string)
+	address := p.Args["address"].(string)
+	postCode := p.Args["post_code"].(string)
+
+
+	user, err := models.UpdateUser(id, firstName, lastName, email, phoneNumber, cityName, address, postCode)
+
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}

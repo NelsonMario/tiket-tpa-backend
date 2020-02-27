@@ -7,7 +7,7 @@ var facilityType *graphql.Object
 func GetFacilityType() *graphql.Object {
 	if facilityType == nil {
 		facilityType = graphql.NewObject(graphql.ObjectConfig{
-			Name:        "AirportType",
+			Name:        "facilityType",
 			Fields: graphql.Fields{
 				"id": &graphql.Field{
 					Type: graphql.Int,
@@ -18,5 +18,5 @@ func GetFacilityType() *graphql.Object {
 			},
 		})
 	}
-	return airportType
+	return facilityType
 }
