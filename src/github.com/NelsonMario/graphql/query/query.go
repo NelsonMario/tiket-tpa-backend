@@ -241,7 +241,15 @@ func GetRoot() *graphql.Object {
 				Type:        graphql.NewList(types.GetHotelType()),
 				Resolve:     resolvers.GetAllHotel,
 			},
-
+			"hotel": {
+				Type:        graphql.NewList(types.GetHotelType()),
+				Args:	graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve:     resolvers.GetHotelById,
+			},
 			"nearestHotels": {
 				Type:        graphql.NewList(types.GetHotelType()),
 				Args:	graphql.FieldConfigArgument{
@@ -291,8 +299,70 @@ func GetRoot() *graphql.Object {
 				Type:        graphql.NewList(types.GetLocationType()),
 				Resolve:     resolvers.GetAllLocation,
 			},
+
+			"blogs": {
+				Type:        graphql.NewList(types.GetBlogType()),
+				Resolve:     resolvers.GetAllBlog,
+			},
+
+			"blogById": {
+				Type: graphql.NewList(types.GetBlogType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetSingleBlog,
+				Description: "Get blog by id",
+			},
+
+			"events": {
+				Type: graphql.NewList(types.GetEventType()),
+				Resolve: resolvers.GetAllEvent,
+			},
+			"eventsByCategory": {
+				Type: graphql.NewList(types.GetEventType()),
+				Args: graphql.FieldConfigArgument{
+					"category": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetEventByCategory,
+			},
+			"nearestEvent": {
+				Type: graphql.NewList(types.GetEventType()),
+				Args: graphql.FieldConfigArgument{
+					"location": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetNearestEventByLocation,
+			},
+			"eventByLocation": {
+				Type: graphql.NewList(types.GetEventType()),
+				Args: graphql.FieldConfigArgument{
+					"location": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.GetEventByLocation,
+			},
+
+			"promos": {
+				Type: graphql.NewList(types.GetPromoType()),
+				Resolve: resolvers.GetAllPromo,
+			},
+
+			"promo": {
+				Type: graphql.NewList(types.GetPromoType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetPromoById,
+			},
 		},
 	})
-
 }
 

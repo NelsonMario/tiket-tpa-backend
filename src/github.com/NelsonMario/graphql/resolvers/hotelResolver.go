@@ -11,6 +11,13 @@ func GetAllHotel(p graphql.ResolveParams)(i interface{}, e error){
 	return hotel, err
 }
 
+func GetHotelById(p graphql.ResolveParams)(i interface{}, e error){
+	id := p.Args["id"].(int)
+
+	hotel, err :=  models.GetHotelById(id)
+	return hotel, err
+}
+
 func GetHotelByLocation(p graphql.ResolveParams)(i interface{}, e error){
 	location := p.Args["location"].(string)
 

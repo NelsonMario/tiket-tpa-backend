@@ -61,6 +61,35 @@ func GetAllHotel() ([]Hotel, error) {
 	return Hotel, err
 }
 
+func GetHotelById(id int) ([]Hotel, error) {
+	db, err = connection.ConnectDatabase()
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+
+	var Hotel []Hotel
+	db.Where("id = ?", id).Find(&Hotel)
+	for i,_ := range Hotel{
+		db.Model(Hotel[i]).Related(&Hotel[i].HotelFacility, "HotelReferFacility").Related(&Hotel[i].HotelRoom, "HotelReferRoom").Related(&Hotel[i].Location, "LocationRefer")
+		for j,_ := range Hotel[i].HotelFacility{
+			db.Model(Hotel[i].HotelFacility[j]).Related(&Hotel[i].HotelFacility[j].Facility, "FacilityRefer")
+		}
+		for j,_ := range Hotel[i].HotelRoom{
+			db.Model(Hotel[i].HotelRoom[j]).Related(&Hotel[i].HotelRoom[j].Room, "RoomRefer")
+			db.Model(Hotel[i].HotelRoom[j].Room).Related(&Hotel[i].HotelRoom[j].Room.RoomFacility, "RoomReferFacility")
+			for k,_ := range Hotel[i].HotelRoom[j].Room.RoomFacility{
+				db.Model(Hotel[i].HotelRoom[j].Room.RoomFacility[k]).Related(&Hotel[i].HotelRoom[j].Room.RoomFacility[k].Facility, "FacilityRefer")
+			}
+		}
+	}
+	fmt.Println(Hotel)
+	return Hotel, err
+}
+
+
 func GetDistinctHotel() ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
 
