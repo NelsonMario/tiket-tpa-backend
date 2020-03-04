@@ -33,6 +33,9 @@ func GetRoomType() *graphql.Object {
 				"roomFacility": &graphql.Field{
 					Type: graphql.NewList(GetRoomFacilityType()),
 				},
+				"type": &graphql.Field{
+					Type: graphql.String,
+				},
 			},
 		})
 	}

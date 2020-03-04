@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -19,6 +20,7 @@ type User struct {
 	CityName string `gorm:"type:varchar(100);"`
 	Address string `gorm:"type:varchar(100);"`
 	PostCode string `gorm:"type:varchar(100);"`
+	Language string
 }
 
 func init() {
@@ -34,6 +36,7 @@ func init() {
 
 func GetAllUser() ([]User, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -48,7 +51,7 @@ func GetAllUser() ([]User, error) {
 }
 func GetUserById(id int) ([]User, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		panic("Failed to connect to database")
 	}
@@ -62,7 +65,7 @@ func GetUserById(id int) ([]User, error) {
 
 func GetUserByEmailOrPhone(input string) ([]User, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		panic("Failed to connect to database")
 	}
@@ -76,7 +79,7 @@ func GetUserByEmailOrPhone(input string) ([]User, error) {
 
 func InsertUser(firstName string, lastName string, phoneNumber string, password string, email string) (*User, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -88,16 +91,16 @@ func InsertUser(firstName string, lastName string, phoneNumber string, password 
 	return user, nil
 }
 
-func UpdateUser(id int, firstName string, lastName string, phoneNumber string, email string, cityName string, address string, postcode string) (*User, error) {
+func UpdateUser(id int, firstName string, lastName string, phoneNumber string, email string, cityName string, address string, postcode string, language string) (*User, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
 	defer db.Close()
 
 	var user User
-	db.Model(&user).Where("id = ?", id).Updates(map[string]interface{}{"first_name": firstName, "last_name": lastName, "phone_number": phoneNumber, "email": email, "city_name": cityName, "address": address, "post_code": postcode})
+	db.Model(&user).Where("id = ?", id).Updates(map[string]interface{}{"first_name": firstName, "last_name": lastName, "phone_number": phoneNumber, "email": email, "city_name": cityName, "address": address, "post_code": postcode, "language": language})
 	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
 	db.Where("id = ?", id).Find(&user)
 	return &user, nil

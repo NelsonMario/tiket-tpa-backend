@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -15,7 +16,7 @@ type Train struct{
 }
 
 func init(){
-	db, err = connection.ConnectDatabase();
+	db, err = connection.ConnectDatabase()
 
 	if err != nil {
 		panic(err)
@@ -27,6 +28,7 @@ func init(){
 
 func GetAllTrain() ([]Train, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -40,6 +42,7 @@ func GetAllTrain() ([]Train, error){
 
 func GetTrainById(id int)([]Train, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -55,7 +58,7 @@ func GetTrainById(id int)([]Train, error){
 
 func InsertTrain(name string)(*Train, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

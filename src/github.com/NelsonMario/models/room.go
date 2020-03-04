@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -14,6 +15,7 @@ type Room struct {
 	MaxGuest 		int 			`gorm:"type:int"`
 	Size			int				`gorm:"type:int"`
 	RoomFacility	[]RoomFacility `gorm:"foreignkey:RoomReferFacility"`
+	Type string
 	CreatedAt		time.Time
 	UpdatedAt		time.Time
 	DeletedAt		*time.Time		`sql:index`
@@ -34,7 +36,7 @@ func init(){
 
 func InsertRoom(checkin time.Time, checkout time.Time, bed string, price int, maxGuest int, size int)(*Room, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -48,6 +50,7 @@ func InsertRoom(checkin time.Time, checkout time.Time, bed string, price int, ma
 
 func GetAllRoom() ([]Room, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -70,6 +73,7 @@ func GetAllRoom() ([]Room, error){
 
 func GetRoomBySchedule(location int, fromDate string, toDate string) ([]Room, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 
 	if toDate == ""{

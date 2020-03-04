@@ -1,6 +1,7 @@
 package connection
 
 import (
+	"errors"
 	"github.com/jinzhu/gorm"
 	_"github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
@@ -42,4 +43,8 @@ func init() {
 
 func ConnectDatabase() (*gorm.DB, error) {
 	return gorm.Open(DBType, ConnString)
+}
+
+func ReturnError(s string) error {
+	return errors.New(s)
 }

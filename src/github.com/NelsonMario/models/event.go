@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -38,6 +39,7 @@ func init(){
 
 func GetAllEvent() ([]Event, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -55,8 +57,29 @@ func GetAllEvent() ([]Event, error){
 	return Event, err
 }
 
+func GetEventById(id int) ([]Event, error){
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+
+	var Event []Event
+
+	db.Where("id = ?", id).Find(&Event)
+	for i,_ := range Event{
+		db.Model(Event[i]).Related(&Event[i].Location, "LocationRefer").Related(&Event[i].EventDetail, "EventRefer")
+	}
+
+	return Event, err
+}
+
 func GetNearestEventByLocation(location string) ([]Event, error) {
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -77,6 +100,7 @@ func GetNearestEventByLocation(location string) ([]Event, error) {
 
 func GetEventByLocation(location string) ([]Event, error) {
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -97,6 +121,7 @@ func GetEventByLocation(location string) ([]Event, error) {
 
 func GetAllEventByCategory(category string) ([]Event, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -115,7 +140,8 @@ func GetAllEventByCategory(category string) ([]Event, error){
 }
 
 func InsertEvent(name string, locationRefer int, startDate time.Time, endDate time.Time, eventLat float64, eventLng float64, category string, description string)(*Event, error){
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -129,7 +155,8 @@ func InsertEvent(name string, locationRefer int, startDate time.Time, endDate ti
 }
 
 func UpdateEvent(id int, name string, locationRefer int, startDate time.Time, endDate time.Time) (*Event, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -144,7 +171,8 @@ func UpdateEvent(id int, name string, locationRefer int, startDate time.Time, en
 }
 
 func RemoveEvent(id int) (*Event, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

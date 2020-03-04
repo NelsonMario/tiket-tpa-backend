@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -30,6 +31,7 @@ func init() {
 
 func GetAllFlightFacility() ([]FlightFacility, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -50,7 +52,7 @@ func GetAllFlightFacility() ([]FlightFacility, error){
 
 func InsertFlightFacility(facilityRefer uint, flightFacilityRefer uint)(*FlightFacility, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +66,7 @@ func InsertFlightFacility(facilityRefer uint, flightFacilityRefer uint)(*FlightF
 
 func UpdateFlightFacility(id int, facilityRefer uint, flightFacilityRefer uint) (*FlightFacility, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +81,7 @@ func UpdateFlightFacility(id int, facilityRefer uint, flightFacilityRefer uint) 
 
 func RemoveFlightFacility(id int) (*FlightFacility, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

@@ -36,6 +36,9 @@ func GetUserType() *graphql.Object {
 				"postcode": &graphql.Field{
 					Type: graphql.String,
 				},
+				"language": &graphql.Field{
+					Type: graphql.String,
+				},
 			},
 		})
 	}

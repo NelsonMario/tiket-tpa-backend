@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -15,7 +16,7 @@ type Airline struct{
 }
 
 func init(){
-	db, err = connection.ConnectDatabase();
+	db, err = connection.ConnectDatabase()
 
 	if err != nil {
 		panic(err)
@@ -27,6 +28,7 @@ func init(){
 
 func GetAllAirline() ([]Airline, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -40,6 +42,7 @@ func GetAllAirline() ([]Airline, error){
 
 func GetAirlineById(id int)([]Airline, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -54,7 +57,8 @@ func GetAirlineById(id int)([]Airline, error){
 }
 
 func InsertAirline(name string)(*Airline, error){
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -68,7 +72,8 @@ func InsertAirline(name string)(*Airline, error){
 }
 
 func UpdateAirline(id int, name string) (*Airline, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -83,7 +88,8 @@ func UpdateAirline(id int, name string) (*Airline, error) {
 }
 
 func RemoveAirline(id int) (*Airline, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

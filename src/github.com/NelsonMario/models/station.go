@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -32,6 +33,7 @@ func init(){
 
 func GetAllStation() ([]Station, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -47,6 +49,7 @@ func GetAllStation() ([]Station, error) {
 
 func GetDistinctStation() ([]Station, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -62,7 +65,7 @@ func GetDistinctStation() ([]Station, error) {
 
 func InsertStation(code string, name string, city string, cityCode string, province string, country string)(*Station, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -39,13 +40,11 @@ func init(){
 	defer db.Close()
 	db.AutoMigrate(&Flight{}).AddForeignKey("airline_refer", "airlines(id)", "CASCADE", "CASCADE").AddForeignKey("from_refer", "airports(id)", "CASCADE", "CASCADE").AddForeignKey("to_refer", "airports(id)", "CASCADE", "CASCADE")
 
-	GetFlightBySchedule("Jakarta", "Singapore","2020-02-01", "")
-
 }
 
 func InsertFlight(airlineRefer int, fromRefer int, toRefer int, departure time.Time, arrival time.Time, duration int, price int, tax int, serviceCharge int)(*Flight, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -59,6 +58,7 @@ func InsertFlight(airlineRefer int, fromRefer int, toRefer int, departure time.T
 
 func GetAllFlight() ([]Flight, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -84,6 +84,7 @@ func GetAllFlight() ([]Flight, error){
 
 func GetFlightByFromAndTo(from string, to string) ([]Flight, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -108,6 +109,7 @@ func GetFlightByFromAndTo(from string, to string) ([]Flight, error){
 
 func GetFlightByOneSchedule(from string, to string, date string) ([]Flight, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -133,6 +135,7 @@ func GetFlightByOneSchedule(from string, to string, date string) ([]Flight, erro
 
 func GetFlightBySchedule(fromCity string, toCity string, fromDate string, toDate string) ([]Flight, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 
 	if toDate == ""{
@@ -161,7 +164,7 @@ func GetFlightBySchedule(fromCity string, toCity string, fromDate string, toDate
 
 func UpdateFlight(Id int, airlineRefer int, fromRefer int, toRefer int, departure time.Time, arrival time.Time, duration int, price int, tax int, serviceCharge int)(*Flight, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 	return nil, err
 	}
@@ -175,7 +178,7 @@ func UpdateFlight(Id int, airlineRefer int, fromRefer int, toRefer int, departur
 
 func RemoveFlight(id int) (*Flight, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

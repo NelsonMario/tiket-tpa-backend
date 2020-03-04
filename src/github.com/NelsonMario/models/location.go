@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -29,6 +30,7 @@ func init(){
 
 func GetAllLocation() ([]Location, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -42,7 +44,7 @@ func GetAllLocation() ([]Location, error){
 
 func InsertLocation(city string, country string, lat float64, lng float64)(*Location, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -38,12 +39,11 @@ func init(){
 
 	defer db.Close()
 	db.AutoMigrate(&Railroad{}).AddForeignKey("train_refer", "trains(id)", "CASCADE", "CASCADE").AddForeignKey("from_refer", "stations(id)", "CASCADE", "CASCADE").AddForeignKey("to_refer", "stations(id)", "CASCADE", "CASCADE")
-	GetRailroadBySchedule("Jakarta", "Bandung", "2020-02-01", "")
 }
 
 func InsertRailroad(trainRefer int, fromRefer int, toRefer int, depature time.Time, arrival time.Time, duration int, price int, tax int, serviceCharge int)(*Railroad, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -57,6 +57,7 @@ func InsertRailroad(trainRefer int, fromRefer int, toRefer int, depature time.Ti
 
 func GetAllRailroad() ([]Railroad, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -78,6 +79,7 @@ func GetAllRailroad() ([]Railroad, error){
 
 func GetRailroadByFromAndTo(from string, to string) ([]Railroad, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -100,6 +102,7 @@ func GetRailroadByFromAndTo(from string, to string) ([]Railroad, error){
 
 func GetRailroadByOneSchedule(fromCity string, toCity string, date string) ([]Railroad, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -122,6 +125,7 @@ func GetRailroadByOneSchedule(fromCity string, toCity string, date string) ([]Ra
 
 func GetRailroadBySchedule(fromCity string, toCity string, fromDate string, toDate string) ([]Railroad, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 
 	if toDate == ""{

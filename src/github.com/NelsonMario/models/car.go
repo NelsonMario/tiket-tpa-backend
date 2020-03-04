@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -30,6 +31,7 @@ func init(){
 
 func GetAllCar() ([]Car, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -55,6 +57,7 @@ func GetAllCar() ([]Car, error){
 
 func GetCarByLocation(location string)([]Car, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -78,7 +81,8 @@ func GetCarByLocation(location string)([]Car, error){
 }
 
 func InsertCar(name string)(*Car, error){
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -92,7 +96,8 @@ func InsertCar(name string)(*Car, error){
 }
 
 func UpdateCar(id int, name string) (*Car, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -107,7 +112,8 @@ func UpdateCar(id int, name string) (*Car, error) {
 }
 
 func RemoveCar(id int) (*Car, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

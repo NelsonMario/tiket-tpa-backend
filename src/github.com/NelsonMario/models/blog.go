@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -32,6 +33,8 @@ func init(){
 
 func GetAllBlog() ([]Blog, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -47,6 +50,8 @@ func GetAllBlog() ([]Blog, error) {
 }
 func GetSingleBlog(id int) ([]Blog, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -62,7 +67,9 @@ func GetSingleBlog(id int) ([]Blog, error) {
 }
 
 func InsertBlog(userId int, title string, value string, image string, thumbnail string, viewer int) (*Blog, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -83,7 +90,8 @@ func InsertBlog(userId int, title string, value string, image string, thumbnail 
 }
 
 func UpdateBlog(id int, title string, thumbnail string, value string) (*Blog, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -98,7 +106,8 @@ func UpdateBlog(id int, title string, thumbnail string, value string) (*Blog, er
 }
 
 func RemoveBlog(id int) (*Blog, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -111,7 +120,8 @@ func RemoveBlog(id int) (*Blog, error) {
 }
 
 func IncreaseViewer(id int, viewer int) (*Blog, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

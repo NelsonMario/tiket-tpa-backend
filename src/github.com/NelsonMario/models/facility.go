@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -27,6 +28,7 @@ func init() {
 
 func GetAllFacility() ([]Facility, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -42,7 +44,7 @@ func GetAllFacility() ([]Facility, error) {
 
 func InsertFacility(name string)(*Facility, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +58,7 @@ func InsertFacility(name string)(*Facility, error){
 
 func UpdateFacility(id int, name string) (*Facility, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +72,7 @@ func UpdateFacility(id int, name string) (*Facility, error) {
 
 func RemoveFacility(id int) (*Facility, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

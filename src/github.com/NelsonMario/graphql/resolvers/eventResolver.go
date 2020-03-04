@@ -49,6 +49,16 @@ func UpdateEvent(p graphql.ResolveParams) (i interface{}, e error) {
 	return event, nil
 }
 
+func GetEventById(p graphql.ResolveParams) (i interface{}, e error) {
+	id := p.Args["id"].(int)
+
+	event, err := models.GetEventById(id)
+
+	if err != nil {
+		return nil, err
+	}
+	return event, nil
+}
 
 func RemoveEvent(p graphql.ResolveParams) (i interface{}, e error) {
 	id := p.Args["id"].(int)

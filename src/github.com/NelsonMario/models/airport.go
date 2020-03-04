@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -32,6 +33,7 @@ func init(){
 
 func GetAllAirport() ([]Airport, error) {
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -47,6 +49,7 @@ func GetAllAirport() ([]Airport, error) {
 
 func GetDistinctAirport() ([]Airport, error) {
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -61,7 +64,8 @@ func GetDistinctAirport() ([]Airport, error) {
 }
 
 func InsertAirport(code string, name string, city string, cityCode string, province string, country string)(*Airport, error){
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -76,6 +80,7 @@ func InsertAirport(code string, name string, city string, cityCode string, provi
 
 func GetAirportById(id int)([]Airport, error){
 	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if(err != nil){
 		panic(err)
@@ -90,7 +95,8 @@ func GetAirportById(id int)([]Airport, error){
 }
 
 func UpdateAirport(id int, code string, name string, city string, cityCode string, province string, country string) (*Airport, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -105,7 +111,8 @@ func UpdateAirport(id int, code string, name string, city string, cityCode strin
 }
 
 func RemoveAirport(id int) (*Airport, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

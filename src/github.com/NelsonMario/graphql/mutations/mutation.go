@@ -110,6 +110,9 @@ func GetRoot() *graphql.Object {
 					"post_code": &graphql.ArgumentConfig{
 						Type: graphql.NewNonNull(graphql.String),
 					},
+					"language": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
 				},
 				Resolve: resolvers.UpdateUser,
 			},

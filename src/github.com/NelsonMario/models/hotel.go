@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -35,6 +36,7 @@ func init(){
 
 func GetAllHotel() ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -63,6 +65,7 @@ func GetAllHotel() ([]Hotel, error) {
 
 func GetHotelById(id int) ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -92,6 +95,7 @@ func GetHotelById(id int) ([]Hotel, error) {
 
 func GetDistinctHotel() ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -106,6 +110,7 @@ func GetDistinctHotel() ([]Hotel, error) {
 
 func GetNearestHotelByLocation(location string) ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -136,6 +141,7 @@ func GetNearestHotelByLocation(location string) ([]Hotel, error) {
 
 func GetHotelByLocation(location string) ([]Hotel, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -166,7 +172,7 @@ func GetHotelByLocation(location string) ([]Hotel, error) {
 
 func InsertHotel(name string, rating int, _type string, locationRefer int, lat float64, lng float64)(*Hotel, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -180,7 +186,7 @@ func InsertHotel(name string, rating int, _type string, locationRefer int, lat f
 
 func UpdateHotel(Id int, name string, rating int)(*Hotel, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -194,7 +200,7 @@ func UpdateHotel(Id int, name string, rating int)(*Hotel, error) {
 
 func RemoveHotel(id int) (*Hotel, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

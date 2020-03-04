@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -18,7 +19,7 @@ type FlightRoutes struct{
 }
 
 func init(){
-	db, err = connection.ConnectDatabase();
+	db, err = connection.ConnectDatabase()
 
 	if err != nil {
 		panic(err)
@@ -30,6 +31,7 @@ func init(){
 
 func GetAllRoute() ([]FlightRoutes, error){
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)
@@ -50,7 +52,7 @@ func GetAllRoute() ([]FlightRoutes, error){
 
 func InsertFlightRoutes(airportRefer uint, flightReferRoutes uint)(*FlightRoutes, error){
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +66,7 @@ func InsertFlightRoutes(airportRefer uint, flightReferRoutes uint)(*FlightRoutes
 
 func UpdateFlightRoutes(id int, airportRefer uint, flightReferRoutes uint) (*FlightRoutes, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +81,7 @@ func UpdateFlightRoutes(id int, airportRefer uint, flightReferRoutes uint) (*Fli
 
 func RemoveFlightRoutes(id int) (*FlightRoutes, error) {
 	db, err := connection.ConnectDatabase()
-
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}

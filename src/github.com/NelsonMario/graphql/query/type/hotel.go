@@ -36,6 +36,9 @@ func GetHotelType() *graphql.Object {
 				"hotelLng": &graphql.Field{
 					Type: graphql.Float,
 				},
+				"review": &graphql.Field{
+					Type: graphql.NewList(GetReviewType()),
+				},
 			},
 		})
 	}

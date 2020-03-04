@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"github.com/jinzhu/gorm"
 	"time"
 )
@@ -33,6 +34,7 @@ func init() {
 
 func GetAllAdmin() ([]Admin, error) {
 	db, err = connection.ConnectDatabase()
+_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		panic(err)

@@ -320,6 +320,17 @@ func GetRoot() *graphql.Object {
 				Type: graphql.NewList(types.GetEventType()),
 				Resolve: resolvers.GetAllEvent,
 			},
+
+			"eventById": {
+				Type: graphql.NewList(types.GetEventType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetEventById,
+			},
+
 			"eventsByCategory": {
 				Type: graphql.NewList(types.GetEventType()),
 				Args: graphql.FieldConfigArgument{
@@ -361,6 +372,29 @@ func GetRoot() *graphql.Object {
 					},
 				},
 				Resolve: resolvers.GetPromoById,
+			},
+
+			"banks": {
+				Type: graphql.NewList(types.GetBankType()),
+				Resolve: resolvers.GetAllBank,
+			},
+			"review": {
+				Type: graphql.NewList(types.GetReviewType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetAllReview,
+			},
+			"tripReview": {
+				Type: graphql.NewList(types.GetTripReviewType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetAllTripReview,
 			},
 		},
 	})

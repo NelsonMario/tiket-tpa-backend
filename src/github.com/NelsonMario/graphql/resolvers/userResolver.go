@@ -47,9 +47,9 @@ func UpdateUser(p graphql.ResolveParams) (i interface{}, e error) {
 	cityName := p.Args["city_name"].(string)
 	address := p.Args["address"].(string)
 	postCode := p.Args["post_code"].(string)
+	language := p.Args["language"].(string)
 
-
-	user, err := models.UpdateUser(id, firstName, lastName, email, phoneNumber, cityName, address, postCode)
+	user, err := models.UpdateUser(id, firstName, lastName, email, phoneNumber, cityName, address, postCode, language)
 
 	if err != nil {
 		return nil, err

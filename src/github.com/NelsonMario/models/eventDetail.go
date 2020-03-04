@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/NelsonMario/connection"
+	"github.com/NelsonMario/middleware"
 	"time"
 )
 
@@ -29,7 +30,8 @@ func init(){
 }
 
 func InsertEventDetail(name string, eventRefer int, price int)(*EventDetail, error){
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -43,7 +45,8 @@ func InsertEventDetail(name string, eventRefer int, price int)(*EventDetail, err
 }
 
 func UpdateEventDetail(id int, name string, eventRefer int, price int) (*EventDetail, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err
@@ -58,7 +61,8 @@ func UpdateEventDetail(id int, name string, eventRefer int, price int) (*EventDe
 }
 
 func RemoveEventDetail(id int) (*EventDetail, error) {
-	db, err := connection.ConnectDatabase()
+	db, err = connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
 
 	if err != nil {
 		return nil, err

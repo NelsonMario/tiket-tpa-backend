@@ -1,13 +1,13 @@
 package connection
 
 import (
-	middleware2 "github.com/NelsonMario/middleware"
+	"github.com/NelsonMario/middleware"
 	"github.com/gorilla/mux"
 )
 
-func newRoutes() *mux.Router {
+func NewRoutes() *mux.Router {
 	r := mux.NewRouter()
-	r.Use(middleware2.LogMiddleware)
+	r.Use(middleware.LogMiddleware)
 
 	return r
 }

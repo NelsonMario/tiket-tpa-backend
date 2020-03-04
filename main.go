@@ -24,12 +24,15 @@ func main() {
 
 	h := handler.New(&handler.Config{
 		Schema:     &schema,
-		Pretty:     true,
+		Pretty:     false,
 		GraphiQL:   true,
 		Playground: true,
 	})
 
 	m := middleware.Cors(h)
-	log.Fatal(http.ListenAndServe(":"+connection.Port, m))
+	r := connection.NewRoutes()
+	r.Handle("/api/{key}", m)
+
+	log.Fatal(http.ListenAndServe(":"+connection.Port, r))
 }
 
