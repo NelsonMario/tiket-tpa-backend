@@ -405,6 +405,20 @@ func GetRoot() *graphql.Object {
 				},
 				Resolve: resolvers.NotifyEmail,
 			},
+
+			"orders": {
+				Type: graphql.NewList(types.GetOrderType()),
+				Resolve: resolvers.GetAllOrder,
+			},
+			"order": {
+				Type: graphql.NewList(types.GetOrderType()),
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Int),
+					},
+				},
+				Resolve: resolvers.GetOrderById,
+			},
 		},
 	})
 }
