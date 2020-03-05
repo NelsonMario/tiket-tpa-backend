@@ -396,6 +396,15 @@ func GetRoot() *graphql.Object {
 				},
 				Resolve: resolvers.GetAllTripReview,
 			},
+			"notifyEmail":{
+				Type: graphql.Boolean,
+				Args: graphql.FieldConfigArgument{
+					"content": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvers.NotifyEmail,
+			},
 		},
 	})
 }

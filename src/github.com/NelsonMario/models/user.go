@@ -63,6 +63,20 @@ func GetUserById(id int) ([]User, error) {
 	return User, err
 }
 
+func GetUserByEmail(email string) ([]User, error) {
+	db, err := connection.ConnectDatabase()
+	_, err = GetApiKeyDetail(middleware.ApiKey)
+	if err != nil {
+		panic("Failed to connect to database")
+	}
+
+	defer db.Close()
+
+	var User []User
+	db.Where("email = ?", email).Find(&User)
+	return User, err
+}
+
 func GetUserByEmailOrPhone(input string) ([]User, error) {
 	db, err := connection.ConnectDatabase()
 	_, err = GetApiKeyDetail(middleware.ApiKey)

@@ -2,46 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a820e335-7a84-45cf-a868-df478971a64c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/resolvers/emailResolver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/go_build_main_go.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/connection/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/connection/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/connection/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/connection/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/mutations/mutation.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/mutations/mutation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/query.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/room.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/room.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/query/type/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/resolvers/eventResolver.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/resolvers/eventResolver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/resolvers/userResolver.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/graphql/resolvers/userResolver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/middleware/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/middleware/cors.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/airline.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/airline.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/airport.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/airport.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/car.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/car.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/event.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/event.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/eventDetail.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/eventDetail.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/facility.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/facility.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flight.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flight.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flightFacility.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flightFacility.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flightRoutes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/flightRoutes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotelFacility.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotelFacility.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotelRoom.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/hotelRoom.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/location.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/location.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/promo.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/promo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/railroad.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/railroad.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/railroadRoutes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/railroadRoutes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/room.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/room.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/roomFacility.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/roomFacility.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/slider.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/slider.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/station.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/station.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/train.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/train.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendor.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendorCar.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendorCar.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendorLocation.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/NelsonMario/models/vendorLocation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/gorilla/mux" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/gorilla/mux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/github.com/gorilla/mux/mux.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/github.com/gorilla/mux/mux.go" afterDir="false" />
     </list>
@@ -155,7 +121,7 @@
     </state>
     <state x="526" y="194" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1577888759426" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1577697805366" />
-    <state width="1323" height="127" key="GridCell.Tab.0.bottom" timestamp="1583336261507">
+    <state width="1323" height="127" key="GridCell.Tab.0.bottom" timestamp="1583382197835">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="981" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/-1024.0.1024.738@-1024.0.1024.738" timestamp="1577979532400" />
@@ -167,9 +133,9 @@
     <state width="1323" height="125" key="GridCell.Tab.0.bottom/0.0.1366.738/-1366.8.1366.738@-1366.8.1366.738" timestamp="1580742781368" />
     <state width="1877" height="203" key="GridCell.Tab.0.bottom/0.0.1366.738/-1920.-109.1920.1050@-1920.-109.1920.1050" timestamp="1580830365498" />
     <state width="1877" height="203" key="GridCell.Tab.0.bottom/0.0.1366.738/-1920.12.1920.1050@-1920.12.1920.1050" timestamp="1580885107396" />
-    <state width="1323" height="127" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1583336261507" />
+    <state width="1323" height="127" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1583382197835" />
     <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577700814658" />
-    <state width="1323" height="127" key="GridCell.Tab.0.center" timestamp="1583336261507">
+    <state width="1323" height="127" key="GridCell.Tab.0.center" timestamp="1583382197835">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="981" height="182" key="GridCell.Tab.0.center/0.0.1366.738/-1024.0.1024.738@-1024.0.1024.738" timestamp="1577979532400" />
@@ -181,9 +147,9 @@
     <state width="1323" height="125" key="GridCell.Tab.0.center/0.0.1366.738/-1366.8.1366.738@-1366.8.1366.738" timestamp="1580742781368" />
     <state width="1877" height="203" key="GridCell.Tab.0.center/0.0.1366.738/-1920.-109.1920.1050@-1920.-109.1920.1050" timestamp="1580830365498" />
     <state width="1877" height="203" key="GridCell.Tab.0.center/0.0.1366.738/-1920.12.1920.1050@-1920.12.1920.1050" timestamp="1580885107396" />
-    <state width="1323" height="127" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1583336261507" />
+    <state width="1323" height="127" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1583382197835" />
     <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577700814658" />
-    <state width="1323" height="127" key="GridCell.Tab.0.left" timestamp="1583336261507">
+    <state width="1323" height="127" key="GridCell.Tab.0.left" timestamp="1583382197835">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="981" height="182" key="GridCell.Tab.0.left/0.0.1366.738/-1024.0.1024.738@-1024.0.1024.738" timestamp="1577979532400" />
@@ -195,9 +161,9 @@
     <state width="1323" height="125" key="GridCell.Tab.0.left/0.0.1366.738/-1366.8.1366.738@-1366.8.1366.738" timestamp="1580742781368" />
     <state width="1877" height="203" key="GridCell.Tab.0.left/0.0.1366.738/-1920.-109.1920.1050@-1920.-109.1920.1050" timestamp="1580830365498" />
     <state width="1877" height="203" key="GridCell.Tab.0.left/0.0.1366.738/-1920.12.1920.1050@-1920.12.1920.1050" timestamp="1580885107396" />
-    <state width="1323" height="127" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1583336261507" />
+    <state width="1323" height="127" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1583382197835" />
     <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577700814658" />
-    <state width="1323" height="127" key="GridCell.Tab.0.right" timestamp="1583336261507">
+    <state width="1323" height="127" key="GridCell.Tab.0.right" timestamp="1583382197835">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="981" height="182" key="GridCell.Tab.0.right/0.0.1366.738/-1024.0.1024.738@-1024.0.1024.738" timestamp="1577979532400" />
@@ -209,7 +175,7 @@
     <state width="1323" height="125" key="GridCell.Tab.0.right/0.0.1366.738/-1366.8.1366.738@-1366.8.1366.738" timestamp="1580742781368" />
     <state width="1877" height="203" key="GridCell.Tab.0.right/0.0.1366.738/-1920.-109.1920.1050@-1920.-109.1920.1050" timestamp="1580830365498" />
     <state width="1877" height="203" key="GridCell.Tab.0.right/0.0.1366.738/-1920.12.1920.1050@-1920.12.1920.1050" timestamp="1580885107396" />
-    <state width="1323" height="127" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1583336261507" />
+    <state width="1323" height="127" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1583382197835" />
     <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577700814658" />
     <state x="147" y="22" key="SettingsEditor" timestamp="1580535540682">
       <screen x="0" y="0" width="1366" height="738" />
