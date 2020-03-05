@@ -43,12 +43,14 @@ func init(){
 }
 
 func InsertFlight(airlineRefer int, fromRefer int, toRefer int, departure time.Time, arrival time.Time, duration int, price int, tax int, serviceCharge int)(*Flight, error){
+
 	db, err := connection.ConnectDatabase()
 	_, err = GetApiKeyDetail(middleware.ApiKey)
 	if err != nil {
 		return nil, err
 	}
 	defer db.Close()
+
 
 	flight := &Flight{AirlineRefer: airlineRefer, FromRefer: fromRefer, ToRefer: toRefer, Departure: departure, Arrival: arrival, Duration: duration, Price: price, Tax: tax, ServiceCharge: serviceCharge}
 	db.Save(flight)

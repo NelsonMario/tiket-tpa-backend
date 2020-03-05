@@ -13,6 +13,8 @@ func GetAllFlight(p graphql.ResolveParams) (i interface{}, e error) {
 
 func InsertFlight(p graphql.ResolveParams)(i interface{}, e error){
 	//notes : add flight routes
+
+
 	airlineRefer := p.Args["airlineRefer"].(int)
 	fromRefer := p.Args["fromRefer"].(int)
 	toRefer := p.Args["toRefer"].(int)
@@ -22,6 +24,10 @@ func InsertFlight(p graphql.ResolveParams)(i interface{}, e error){
 	price := p.Args["price"].(int)
 	tax := p.Args["tax"].(int)
 	serviceCharge := p.Args["serviceCharge"].(int)
+
+	if(price == -1 || duration == -1 || tax == -1 || serviceCharge == -1){
+		return 1, nil
+	}
 
 
 	flight, err := models.InsertFlight(airlineRefer, fromRefer, toRefer, departure, arrival, duration, price, tax ,serviceCharge)

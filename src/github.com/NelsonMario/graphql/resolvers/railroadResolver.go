@@ -22,6 +22,9 @@ func InsertRailroad(p graphql.ResolveParams)(i interface{}, e error){
 	tax := p.Args["tax"].(int)
 	serviceCharge := p.Args["serviceCharge"].(int)
 
+	if(trainRefer == -1 || fromRefer == -1 || toRefer == -1 || duration == -1 || price == -1 || tax == -1 || serviceCharge == -1){
+		return 1, nil
+	}
 
 	railroad, err := models.InsertRailroad(trainRefer, fromRefer, toRefer, departure, arrival, duration, price, tax ,serviceCharge)
 

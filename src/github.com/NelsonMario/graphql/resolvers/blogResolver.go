@@ -1,6 +1,7 @@
 package resolvers
 
 import (
+	"fmt"
 	"github.com/NelsonMario/models"
 	"github.com/graphql-go/graphql"
 )
@@ -25,6 +26,10 @@ func InsertBlog(p graphql.ResolveParams)(i interface{}, e error){
 	thumbnail := p.Args["thumbnail"].(string)
 	viewer := p.Args["viewer"].(int)
 
+	if(userId == -1 || title == " " || value == " " || image == " " || thumbnail == " "){
+		fmt.Println("ASDs")
+		return 1, nil
+	}
 
 	airport, err := models.InsertBlog(userId, title, value, image, thumbnail, viewer)
 

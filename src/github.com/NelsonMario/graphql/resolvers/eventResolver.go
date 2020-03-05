@@ -81,6 +81,11 @@ func InsertEvent(p graphql.ResolveParams)(i interface{}, e error){
 	eventLng := p.Args["eventLng"].(float64)
 	category := p.Args["category"].(string)
 	description := p.Args["description"].(string)
+
+	if(name == " " || locationRefer == -1 || category == " " || description == " "){
+		return 1, nil
+	}
+
 	event, err := models.InsertEvent(name, locationRefer, startDate, endDate, eventLat, eventLng, category, description)
 
 	if err != nil {

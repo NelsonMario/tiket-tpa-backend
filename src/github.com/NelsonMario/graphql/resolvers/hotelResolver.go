@@ -45,6 +45,11 @@ func InsertHotel(p graphql.ResolveParams)(i interface{}, e error){
 	hotelLat := p.Args["hotelLat"].(float64)
 	hotelLng := p.Args["hotelLng"].(float64)
 
+	if(name == " " || rating == -1 || _type == " "){
+		fmt.Println("ASD")
+		return 1, nil
+	}
+
 	hotel, err := models.InsertHotel(name, rating, _type, locationRefer, hotelLat, hotelLng)
 
 	if err != nil {
